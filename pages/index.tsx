@@ -46,9 +46,6 @@ const Home = () => (
         </Container>
       </section>
       <Section className="bg-gray-300">
-        <header>
-          <h2 className="text-lg">Videos</h2>
-        </header>
         <Cards>
           {videos.map((video) => (
             <Card key={video}>
