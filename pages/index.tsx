@@ -31,11 +31,11 @@ const Home = () => (
         <Container>
           <div className="sm:flex">
             <img src="/bas.png" className="sm:w-1/2 sm:order-1" />
-            <div className="p-4 sm:flex-1 sm:self-center">
+            <div className="py-4 sm:pl-4 sm:pr-8 sm:flex-1 sm:self-center">
               <p className="text-2xl">
-                IJshockey voor iedereen, zelfs Steven...
+                Wij leren jou ijshockey spelen!
               </p>
-              <p className="text-xl">Fun, team, nog allemaal text</p>
+              <p className="text-xl">Iedereen kan ijshockey spelen en wij staan klaar om jou hiermee te helpen.</p>
             </div>
           </div>
         </Container>
