@@ -6,7 +6,7 @@ export const Newsletter = () => {
   const [email, setEmail] = useState<string>("");
 
   return (
-    <div className="bg-gray-600 mx-4 sm:mx-0 max-w-xs p-4 rounded">
+    <div className="bg-yellow-500 text-yellow-50 mx-4 sm:mx-0 max-w-xs p-4 rounded">
       <p>Blijf op de hoogte met onze nieuwsbrief:</p>
       <form
         onSubmit={(e) => {

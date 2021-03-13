@@ -1,7 +1,7 @@
 type Props = { id: string };
 
 export const Video = ({ id }: Props) => (
-  <div className="aspect-w-16 aspect-h-9 sm:mr-2">
+  <div className="aspect-w-16 aspect-h-9 sm:mr-8">
     <iframe
       src={`https://www.youtube.com/embed/${id}`}
       frameBorder="0"
