@@ -18,7 +18,7 @@ const Home = () => (
         padding: 0,
       }}
     >
-      <img src="logo.png" style={{ maxWidth: "50%" }} />
+      <img src="/logo.png" style={{ maxWidth: "50%" }} />
     </main>
   </div>
 );
