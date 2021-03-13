@@ -66,7 +66,7 @@ const Home = () => (
               </div>
             </Card>
             <Card>
-              <div className="bg-purple-500 text-purple-50 p-8 rounded h-48">
+              <div className="bg-indigo-500 text-indigo-50 p-8 rounded h-48">
                 <h3 className="font-semibold uppercase">TBD</h3>
                 <p className="mt-2">
                   Laat je e-mail achter en blijf op de hoogte van onze events.
