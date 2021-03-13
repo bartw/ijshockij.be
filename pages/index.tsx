@@ -19,13 +19,18 @@ const Home = () => (
           <p className="text-xl">Fun, team, nog allemaal text</p>
         </div>
       </section>
-      <section className="p-4">
-        <Video id="BDJeG2Zr4hw" />
-        <Video id="36JkgCw5iUE" />
-        <Video id="d6QZrAkdcsQ" />
-        <Video id="tuntNVSO_x8" />
-        <Video id="OFVvd4S1us8" />
-        <Video id="c7sXo-1uTuE" />
+      <section className="mt-4">
+        <header className="p-4">
+          <h2 className="text-lg">Videos</h2>
+        </header>
+        <div className="sm:flex sm:overflow-x-scroll">
+          <Video id="BDJeG2Zr4hw" />
+          <Video id="36JkgCw5iUE" />
+          <Video id="d6QZrAkdcsQ" />
+          <Video id="tuntNVSO_x8" />
+          <Video id="OFVvd4S1us8" />
+          <Video id="c7sXo-1uTuE" />
+        </div>
       </section>
       <footer className="mt-4 p-4 text-center text-sm bg-gray-100">
         © 2021 - ijshockij
