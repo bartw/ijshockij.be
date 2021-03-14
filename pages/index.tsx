@@ -56,9 +56,9 @@ const Home = () => (
         <div className="mt-2">
           <Cards>
             <Card>
-              <div className="bg-indigo-500 text-indigo-50 p-8 rounded h-48 sm:mr-8">
+              <div className="bg-indigo-600 text-indigo-50 p-8 rounded h-48 sm:mr-8">
                 <h3 className="font-semibold uppercase">Paaskamp</h3>
-                <ul className="mt-2">
+                <ul className="mt-4">
                   <li>Vrijdag 09-04-2021</li>
                   <li>Zaterdag 10-04-2021</li>
                   <li>Zondag 11-04-2021</li>
@@ -66,9 +66,9 @@ const Home = () => (
               </div>
             </Card>
             <Card>
-              <div className="bg-indigo-500 text-indigo-50 p-8 rounded h-48">
+              <div className="bg-indigo-600 text-indigo-50 p-8 rounded h-48">
                 <h3 className="font-semibold uppercase">TBD</h3>
-                <p className="mt-2">
+                <p className="mt-4">
                   Laat je e-mail achter en blijf op de hoogte van onze events.
                 </p>
               </div>
@@ -83,9 +83,9 @@ const Home = () => (
         <div className="mt-2">
           <Cards>
             <Card>
-              <div className="bg-indigo-500 text-indigo-50 p-8 rounded h-48">
+              <div className="bg-indigo-600 text-indigo-50 p-8 rounded h-48">
                 <h3 className="font-semibold uppercase">Coming soon!</h3>
-                <p className="mt-2">
+                <p className="mt-4">
                   Laat je e-mail achter en blijf op de hoogte van onze
                   merchandise.
                 </p>
