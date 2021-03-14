@@ -32,10 +32,11 @@ const Home = () => (
           <div className="sm:flex">
             <img src="/bas.png" className="sm:w-1/2 sm:order-1" />
             <div className="py-4 sm:pl-4 sm:pr-8 sm:flex-1 sm:self-center">
-              <p className="text-2xl">
-                Wij leren jou ijshockey spelen!
+              <p className="text-2xl">Wij leren jou ijshockey spelen!</p>
+              <p className="text-xl">
+                Iedereen kan ijshockey spelen en wij staan klaar om jou hiermee
+                te helpen.
               </p>
-              <p className="text-xl">Iedereen kan ijshockey spelen en wij staan klaar om jou hiermee te helpen.</p>
             </div>
           </div>
         </Container>
@@ -69,7 +70,8 @@ const Home = () => (
               <div className="bg-indigo-600 text-indigo-50 p-8 rounded h-48">
                 <h3 className="font-semibold uppercase">TBD</h3>
                 <p className="mt-4">
-                  Laat je e-mail achter en blijf op de hoogte van onze events.
+                  Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van
+                  onze events.
                 </p>
               </div>
             </Card>
@@ -86,8 +88,8 @@ const Home = () => (
               <div className="bg-indigo-600 text-indigo-50 p-8 rounded h-48">
                 <h3 className="font-semibold uppercase">Coming soon!</h3>
                 <p className="mt-4">
-                  Laat je e-mail achter en blijf op de hoogte van onze
-                  merchandise.
+                  Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van
+                  onze merchandise.
                 </p>
               </div>
             </Card>

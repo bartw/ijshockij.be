@@ -59,7 +59,7 @@ export const Newsletter = () => {
         </div>
         <div className="mt-2">
           <Button type="submit" disabled={isPending}>
-            Abonneer
+            Inschrijven
           </Button>
         </div>
       </form>
