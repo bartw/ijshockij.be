@@ -40,7 +40,7 @@ export const Newsletter = () => {
   );
 
   return (
-    <div className="bg-yellow-600 text-yellow-50 max-w-xs p-8 rounded">
+    <div className="bg-yellow-500 text-white max-w-xs p-8 rounded">
       <p className="font-semibold">Schrijf je in voor onze nieuwsbrief</p>
       <form className="mt-4" onSubmit={subscribe}>
         <div>

@@ -57,7 +57,7 @@ const Home = () => (
         <div className="mt-2">
           <Cards>
             <Card>
-              <div className="bg-indigo-600 text-indigo-50 p-8 rounded h-48 sm:mr-8">
+              <div className="bg-indigo-600 text-white p-8 rounded h-48 sm:mr-8">
                 <h3 className="font-semibold uppercase">Paaskamp</h3>
                 <ul className="mt-4">
                   <li>Vrijdag 09-04-2021</li>
@@ -67,7 +67,7 @@ const Home = () => (
               </div>
             </Card>
             <Card>
-              <div className="bg-indigo-600 text-indigo-50 p-8 rounded h-48">
+              <div className="bg-indigo-600 text-white p-8 rounded h-48">
                 <h3 className="font-semibold uppercase">TBD</h3>
                 <p className="mt-4">
                   Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van
@@ -85,7 +85,7 @@ const Home = () => (
         <div className="mt-2">
           <Cards>
             <Card>
-              <div className="bg-indigo-600 text-indigo-50 p-8 rounded h-48">
+              <div className="bg-indigo-600 text-white p-8 rounded h-48">
                 <h3 className="font-semibold uppercase">Coming soon!</h3>
                 <p className="mt-4">
                   Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van
