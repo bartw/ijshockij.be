@@ -30,7 +30,7 @@ const Home = () => (
       <section className="pt-16">
         <Container>
           <div className="sm:flex">
-            <img src="/bas.png" className="sm:w-1/2 sm:order-1" />
+            <img src="/bas.png" alt="Coach Bas" className="sm:w-1/2 sm:order-1" />
             <div className="py-4 sm:pl-4 sm:pr-8 sm:flex-1 sm:self-center">
               <p className="text-2xl">Wij leren jou ijshockey spelen!</p>
               <p className="text-xl">

@@ -15,15 +15,27 @@ export const Footer = () => (
         <Newsletter />
       </div>
       <div className="my-8 text-center">
-        <div className="text-2xl">
-          <a href="https://www.facebook.com/ijshockij">
-            <FontAwesomeIcon icon={faFacebook} className="hover:text-gray-300" />
+        <div className="text-3xl">
+          <a
+            href="https://www.facebook.com/ijshockij"
+            className="hover:text-gray-300"
+            title="facebook"
+          >
+            <FontAwesomeIcon icon={faFacebook} />
           </a>
-          <a href="https://www.instagram.com/ijshockij">
-            <FontAwesomeIcon icon={faInstagram} className="hover:text-gray-300 ml-4" />
+          <a
+            href="https://www.instagram.com/ijshockij"
+            className="hover:text-gray-300 ml-6"
+            title="instagram"
+          >
+            <FontAwesomeIcon icon={faInstagram} />
           </a>
-          <a href="https://twitter.com/ijshockij">
-            <FontAwesomeIcon icon={faTwitter} className="hover:text-gray-300 ml-4" />
+          <a
+            href="https://twitter.com/ijshockij"
+            className="hover:text-gray-300 ml-6"
+            title="twitter"
+          >
+            <FontAwesomeIcon icon={faTwitter} />
           </a>
         </div>
         <div className="mt-4 text-sm">© 2021 - ijshockij</div>
