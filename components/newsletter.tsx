@@ -17,7 +17,6 @@ export const Newsletter = () => {
 
   const subscribe = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
-      console.log("subsribe", email, isPending);
       e.preventDefault();
 
       if (isPending) return;
