@@ -1,6 +1,13 @@
 import Head from "next/head";
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
-import { Events, Footer, Header, Hero, Sponsors } from "../components-v2";
+import {
+  Events,
+  Footer,
+  Header,
+  Hero,
+  Newsletter,
+  Sponsors,
+} from "../components-v2";
 
 config.autoAddCss = false;
 
@@ -16,6 +23,7 @@ const Home = () => (
       <Header />
       <Hero />
       <Events />
+      <Newsletter />
       <Sponsors />
       <Footer />
     </main>

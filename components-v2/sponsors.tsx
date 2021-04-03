@@ -1,4 +1,5 @@
 import { SPONSORS } from "../data";
+import { Container } from "./container";
 
 const SponsorLink = ({
   href,
@@ -9,15 +10,21 @@ const SponsorLink = ({
   title: string;
   logo: string;
 }) => (
-  <a className="mb-8 block" href={href} title={title}>
-    <img src={logo} alt={title} />
-  </a>
+  <div className="">
+    <a className="" href={href} title={title}>
+      <img src={logo} alt={title} />
+    </a>
+  </div>
 );
 
 export const Sponsors = () => (
   <section className="py-8 px-4">
-    {SPONSORS.map(({ id, href, title, logo }) => (
-      <SponsorLink key={id} href={href} title={title} logo={logo} />
-    ))}
+    <Container>
+      <div className="grid md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-8">
+        {SPONSORS.map(({ id, href, title, logo }) => (
+          <SponsorLink key={id} href={href} title={title} logo={logo} />
+        ))}
+      </div>
+    </Container>
   </section>
 );
