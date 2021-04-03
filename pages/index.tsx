@@ -7,7 +7,7 @@ import {
   Hero,
   Newsletter,
   Sponsors,
-} from "../components-v2";
+} from "../components";
 
 config.autoAddCss = false;
 

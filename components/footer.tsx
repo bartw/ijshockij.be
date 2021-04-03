@@ -1,45 +1,30 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { SOCIAL_NETWORKS } from "../data";
 
-import { Container } from "./container";
-import { Newsletter } from "./newsletter";
+const SocialLink = ({
+  href,
+  title,
+  icon,
+}: {
+  href: string;
+  title: string;
+  icon: IconDefinition;
+}) => (
+  <div className="inline-block mx-4">
+    <a className="p-4" href={href} title={title}>
+      <FontAwesomeIcon icon={icon} />
+    </a>
+  </div>
+);
 
 export const Footer = () => (
-  <footer className="mt-32 bg-gray-900 text-gray-50">
-    <Container>
-      <div className="-mt-16">
-        <Newsletter />
-      </div>
-      <div className="my-8 text-center">
-        <div className="text-3xl">
-          <a
-            href="https://www.facebook.com/ijshockij"
-            className="hover:text-gray-300"
-            title="facebook"
-          >
-            <FontAwesomeIcon icon={faFacebook} />
-          </a>
-          <a
-            href="https://www.instagram.com/ijshockij"
-            className="hover:text-gray-300 ml-6"
-            title="instagram"
-          >
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-          <a
-            href="https://twitter.com/ijshockij"
-            className="hover:text-gray-300 ml-6"
-            title="twitter"
-          >
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-        </div>
-        <div className="mt-4 text-sm">© 2021 - ijshockij</div>
-      </div>
-    </Container>
+  <footer className="pt-8 pb-4 bg-gray-800 text-gray-50 text-center">
+    <div>
+      {SOCIAL_NETWORKS.map(({ id, href, title, icon }) => (
+        <SocialLink key={id} href={href} title={title} icon={icon} />
+      ))}
+    </div>
+    <div className="mt-4 text-sm">© 2021 - ijshockij</div>
   </footer>
 );

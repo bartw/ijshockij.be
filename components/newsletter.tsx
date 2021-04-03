@@ -1,8 +1,32 @@
-import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
-import { Button } from "./button";
-import { TextInput } from "./text-input";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarCheck } from "@fortawesome/free-regular-svg-icons";
+import {
+  faTshirt,
+  faEnvelopeOpenText,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  FormEvent,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { Container } from "./container";
 
-const NEWSLETTER_EMAIL_ID = "NEWSLETTER_EMAIL_ID";
+const IconListItem = ({
+  icon,
+  children,
+}: {
+  icon: IconDefinition;
+  children: ReactNode;
+}) => (
+  <li className="mt-1 flex items-baseline">
+    <FontAwesomeIcon icon={icon} fixedWidth />
+    <span className="ml-2">{children}</span>
+  </li>
+);
 
 export const Newsletter = () => {
   const [email, setEmail] = useState<string>("");
@@ -40,28 +64,36 @@ export const Newsletter = () => {
   );
 
   return (
-    <div className="bg-yellow-500 text-white max-w-xs p-8 rounded">
-      <p className="font-semibold">Schrijf je in voor onze nieuwsbrief</p>
-      <form className="mt-4" onSubmit={subscribe}>
-        <div>
-          <label htmlFor={NEWSLETTER_EMAIL_ID}>Email:</label>
-          <TextInput
-            id={NEWSLETTER_EMAIL_ID}
-            type="email"
-            placeholder="player@hockey.ice"
-            required
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </div>
-        <div className="mt-2">
-          <Button type="submit" disabled={isPending}>
-            Inschrijven
-          </Button>
-        </div>
-      </form>
-    </div>
+    <section className="bg-gray-50 py-8 px-4">
+      <Container>
+        <p>Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van onze:</p>
+        <ul className="mt-2">
+          <IconListItem icon={faCalendarCheck}>kampen en events</IconListItem>
+          <IconListItem icon={faTshirt}>merchandise</IconListItem>
+        </ul>
+        <form className="mt-4" onSubmit={subscribe}>
+          <div className="flex">
+            <input
+              className="flex-1 md:flex-none border-l border-t border-b border-gray-800 rounded-l p-2 text-gray-900"
+              type="email"
+              placeholder="player@hockey.ice"
+              required
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          <button
+            type="submit"
+            disabled={isPending}
+            className="border-r border-t border-b border-gray-800 rounded-r bg-gray-800 text-gray-50 px-4 py-2"
+            title="Inschrijven"
+          >
+            <FontAwesomeIcon icon={faEnvelopeOpenText} />
+          </button>
+          </div>
+        </form>
+      </Container>
+    </section>
   );
 };
