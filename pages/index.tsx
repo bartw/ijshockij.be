@@ -15,6 +15,7 @@ const Home = () => (
   <div>
     <Head>
       <title>ijshockij</title>
+      <meta name="description" content="Wij leren jou ijshockey spelen!" />
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       <style>{dom.css()}</style>
     </Head>
