@@ -134,17 +134,21 @@ const Home = () => (
         </div>
       </header>
       <section className="bg-gray-50 py-8">
-        <img src="/bas.png" alt="Coach Bas" className="" />
-        <div className="m-2">
-          <h2 className="text-xl">Wij leren jou ijshockey spelen!</h2>
-          <p>
-            Iedereen kan ijshockey spelen en wij staan klaar om jou hiermee te
-            helpen.
-          </p>
+        <div className="md:flex md:flex-row-reverse md:items-center">
+          <div>
+            <img src="/bas.png" alt="Coach Bas" />
+          </div>
+          <div className="mx-4 mt-4 md:mt-0">
+            <h2 className="text-xl">Wij leren jou ijshockey spelen!</h2>
+            <p>
+              Iedereen kan ijshockey spelen en wij staan klaar om jou hiermee te
+              helpen.
+            </p>
+          </div>
         </div>
       </section>
       <section className="py-8 px-4">
-        <div>
+        <div className="md:w-1/3">
           <div className="bg-gray-800 flex items-center justify-between p-4 text-gray-50 rounded-t">
             <h3 className="uppercase">paaskamp</h3>
             <FontAwesomeIcon icon={faCalendarCheck} />
@@ -156,7 +160,11 @@ const Home = () => (
               <li>11 april 14:00 - 18:30</li>
             </ul>
             <div>
-              <button className="mt-4 rounded bg-gray-800 text-gray-50 px-4 py-2 w-full" type="button" disabled>
+              <button
+                className="mt-4 rounded bg-gray-800 text-gray-50 px-4 py-2 w-full"
+                type="button"
+                disabled
+              >
                 Volzet
               </button>
             </div>
