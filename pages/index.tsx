@@ -1,17 +1,120 @@
 import Head from "next/head";
-import { config, dom } from "@fortawesome/fontawesome-svg-core";
-import { Cards, Card, Container, Footer, Section, Video } from "../components";
-
-const videos = [
-  "BDJeG2Zr4hw",
-  "36JkgCw5iUE",
-  "d6QZrAkdcsQ",
-  "tuntNVSO_x8",
-  "OFVvd4S1us8",
-  "c7sXo-1uTuE",
-];
+import { config, dom, IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faInstagram,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import { faCalendarCheck } from "@fortawesome/free-regular-svg-icons";
 
 config.autoAddCss = false;
+
+const SocialCircleLink = ({
+  href,
+  title,
+  icon,
+}: {
+  href: string;
+  title: string;
+  icon: IconDefinition;
+}) => (
+  <div className="inline-block mx-4">
+    <a
+      className="rounded-full h-8 w-8 flex items-center justify-center bg-gray-800 text-gray-50"
+      href={href}
+      title={title}
+    >
+      <FontAwesomeIcon icon={icon} />
+    </a>
+  </div>
+);
+
+const Facebook = () => (
+  <SocialCircleLink
+    href="https://www.facebook.com/ijshockij"
+    title="facebook"
+    icon={faFacebookF}
+  />
+);
+
+const Instagram = () => (
+  <SocialCircleLink
+    href="https://www.instagram.com/ijshockij"
+    title="instagram"
+    icon={faInstagram}
+  />
+);
+
+const Twitter = () => (
+  <SocialCircleLink
+    href="https://twitter.com/ijshockij"
+    title="twitter"
+    icon={faTwitter}
+  />
+);
+
+const SponsorLink = ({
+  href,
+  title,
+  logo,
+}: {
+  href: string;
+  title: string;
+  logo: string;
+}) => (
+  <a className="mb-8 block" href={href} title={title}>
+    <img src={logo} alt={title} />
+  </a>
+);
+
+const APlus = () => (
+  <SponsorLink
+    href="https://www.aplusramen.be/"
+    title="A-Plus Ramen"
+    logo="/a-plus.png"
+  />
+);
+
+const ABFK = () => (
+  <SponsorLink
+    href="https://abfk.be/"
+    title="Boekhoudkantoor ABFK"
+    logo="/abfk.png"
+  />
+);
+
+const GKP = () => (
+  <SponsorLink
+    href="https://www.gkp.be/"
+    title="GKP Zonnepanelen, dak- en elektriciteitswerken"
+    logo="/gkp.png"
+  />
+);
+
+const KapermolenSportbar = () => (
+  <SponsorLink
+    href="https://www.facebook.com/Sportbar-Kapermolen-100417485152896/"
+    title="Sportbar Kapermolen"
+    logo="/kapermolen-sportbar.png"
+  />
+);
+
+const Momentum = () => (
+  <SponsorLink
+    href="https://momentumvastgoed.be/"
+    title="Momentum Vastgoed Hasselt-Genk"
+    logo="/momentum.png"
+  />
+);
+
+const VinosRios = () => (
+  <SponsorLink
+    href="https://vinosrios.com/"
+    title="Vinos Rios Spaanse kwaliteitswijnen"
+    logo="/vinos-rios.png"
+  />
+);
 
 const Home = () => (
   <div>
@@ -21,82 +124,61 @@ const Home = () => (
       <style>{dom.css()}</style>
     </Head>
 
-    <main className="bg-gray-50 text-gray-900 min-h-full flex flex-col">
-      <header className="pt-4">
-        <Container>
-          <h1 className="text-lg">ijshockij</h1>
-        </Container>
+    <main className="bg-gray-200 text-gray-900">
+      <header className="text-center py-8">
+        <h1 className="text-3xl">ijshockij</h1>
+        <div className="mt-4 -mb-12">
+          <Facebook />
+          <Instagram />
+          <Twitter />
+        </div>
       </header>
-      <section className="pt-16">
-        <Container>
-          <div className="sm:flex">
-            <img src="/bas.png" alt="Coach Bas" className="sm:w-1/2 sm:order-1" />
-            <div className="py-4 sm:pl-4 sm:pr-8 sm:flex-1 sm:self-center">
-              <p className="text-2xl">Wij leren jou ijshockey spelen!</p>
-              <p className="text-xl">
-                Iedereen kan ijshockey spelen en wij staan klaar om jou hiermee
-                te helpen.
-              </p>
+      <section className="bg-gray-50 py-8">
+        <img src="/bas.png" alt="Coach Bas" className="" />
+        <div className="m-2">
+          <h2 className="text-xl">Wij leren jou ijshockey spelen!</h2>
+          <p>
+            Iedereen kan ijshockey spelen en wij staan klaar om jou hiermee te
+            helpen.
+          </p>
+        </div>
+      </section>
+      <section className="py-8 px-4">
+        <div>
+          <div className="bg-gray-800 flex items-center justify-between p-4 text-gray-50 rounded-t">
+            <h3 className="uppercase">paaskamp</h3>
+            <FontAwesomeIcon icon={faCalendarCheck} />
+          </div>
+          <div className="p-4 bg-gray-50 rounded-b">
+            <ul>
+              <li>09 april 13:00 - 17:30</li>
+              <li>10 april 14:00 - 18:30</li>
+              <li>11 april 14:00 - 18:30</li>
+            </ul>
+            <div>
+              <button className="mt-4 rounded bg-gray-800 text-gray-50 px-4 py-2 w-full" type="button" disabled>
+                Volzet
+              </button>
             </div>
           </div>
-        </Container>
+        </div>
       </section>
-      <Section className="bg-green-500">
-        <Cards>
-          {videos.map((video) => (
-            <Card key={video}>
-              <Video id={video} />
-            </Card>
-          ))}
-        </Cards>
-      </Section>
-      <Section>
-        <header>
-          <h2 className="text-lg">Events</h2>
-        </header>
-        <div className="mt-2">
-          <Cards>
-            <Card>
-              <div className="bg-indigo-600 text-white p-8 rounded h-48 sm:mr-8">
-                <h3 className="font-semibold uppercase">Paaskamp</h3>
-                <ul className="mt-4">
-                  <li>Vrijdag 09-04-2021</li>
-                  <li>Zaterdag 10-04-2021</li>
-                  <li>Zondag 11-04-2021</li>
-                </ul>
-              </div>
-            </Card>
-            <Card>
-              <div className="bg-indigo-600 text-white p-8 rounded h-48">
-                <h3 className="font-semibold uppercase">TBD</h3>
-                <p className="mt-4">
-                  Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van
-                  onze events.
-                </p>
-              </div>
-            </Card>
-          </Cards>
+      <section className="py-8 px-4">
+        <APlus />
+        <ABFK />
+        <GKP />
+        <KapermolenSportbar />
+        <Momentum />
+        <VinosRios />
+      </section>
+      <footer className="pt-8 pb-4 bg-gray-800 text-gray-50 text-center">
+        <div className="">
+          <Facebook />
+          <Instagram />
+          <Twitter />
         </div>
-      </Section>
-      <Section className="bg-gray-50">
-        <header>
-          <h2 className="text-lg">Merchandise</h2>
-        </header>
-        <div className="mt-2">
-          <Cards>
-            <Card>
-              <div className="bg-indigo-600 text-white p-8 rounded h-48">
-                <h3 className="font-semibold uppercase">Coming soon!</h3>
-                <p className="mt-4">
-                  Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van
-                  onze merchandise.
-                </p>
-              </div>
-            </Card>
-          </Cards>
-        </div>
-      </Section>
-      <Footer />
+        <div className="mt-4 text-sm">© 2021 - ijshockij</div>
+      </footer>
     </main>
   </div>
 );
