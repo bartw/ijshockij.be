@@ -66,7 +66,7 @@ export const Newsletter = () => {
   return (
     <section className="bg-gray-50 py-8 px-4">
       <Container>
-        <p>Schrijf je in voor onze nieuwsbrief en blijf op hoogte van onze:</p>
+        <p>Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van onze:</p>
         <ul className="mt-2">
           <IconListItem icon={faCalendarCheck}>kampen en events</IconListItem>
           <IconListItem icon={faTshirt}>merchandise</IconListItem>
