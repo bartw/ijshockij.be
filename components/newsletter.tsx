@@ -66,7 +66,9 @@ export const Newsletter = () => {
   return (
     <section className="bg-gray-50 py-8 px-4">
       <Container>
-        <p>Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van onze:</p>
+        <p>
+          Schrijf je in voor onze nieuwsbrief en blijf op de hoogte van onze:
+        </p>
         <ul className="mt-2">
           <IconListItem icon={faCalendarCheck}>kampen en events</IconListItem>
           <IconListItem icon={faTshirt}>merchandise</IconListItem>
@@ -83,14 +85,14 @@ export const Newsletter = () => {
                 setEmail(e.target.value);
               }}
             />
-          <button
-            type="submit"
-            disabled={isPending}
-            className="border-r border-t border-b border-gray-800 rounded-r bg-gray-800 text-gray-50 px-4 py-2"
-            title="Inschrijven"
-          >
-            <FontAwesomeIcon icon={faEnvelopeOpenText} />
-          </button>
+            <button
+              type="submit"
+              disabled={isPending}
+              className="border-r border-t border-b border-gray-800 hover:border-gray-700 rounded-r bg-gray-800 hover:bg-gray-700 text-gray-50 px-4 py-2"
+              title="Inschrijven"
+            >
+              <FontAwesomeIcon icon={faEnvelopeOpenText} />
+            </button>
           </div>
         </form>
       </Container>
