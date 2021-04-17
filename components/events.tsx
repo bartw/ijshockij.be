@@ -45,13 +45,12 @@ export const Events = () => (
             <li>10 april 14:00 - 18:30</li>
             <li>11 april 14:00 - 18:30</li>
           </ul>
-          <button
-            className="mt-4 rounded bg-gray-800 hover:bg-gray-700 text-gray-50 px-4 py-2 w-full cursor-not-allowed"
-            type="button"
-            disabled
+          <a
+            className="mt-4 rounded bg-gray-800 hover:bg-gray-700 text-gray-50 px-4 py-2 w-full block text-center"
+            href="https://youtube.com/playlist?list=PLELBzzZiH7pgoiomd9XL0mchJGM_FPMFP"
           >
-            Afgelopen
-          </button>
+            Videos
+          </a>
         </Card>
         <Card>
           <CardHeader icon={faTshirt}>t-shirt</CardHeader>
@@ -63,7 +62,7 @@ export const Events = () => (
             type="button"
             disabled
           >
-            Bestellen
+            Binnenkort beschikbaar
           </button>
         </Card>
         <Card>
@@ -76,7 +75,7 @@ export const Events = () => (
             type="button"
             disabled
           >
-            Bestellen
+            Binnenkort beschikbaar
           </button>
         </Card>
       </div>
