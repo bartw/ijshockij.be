@@ -2,6 +2,7 @@ import {
   faFacebookF,
   faInstagram,
   faTwitter,
+  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
 export const SOCIAL_NETWORKS = [
@@ -16,6 +17,12 @@ export const SOCIAL_NETWORKS = [
     href: "https://www.instagram.com/ijshockij",
     title: "Instagram",
     icon: faInstagram,
+  },
+  {
+    id: "youtube",
+    href: "https://www.youtube.com/channel/UCszYbvSpq44iHrcv3stQrqg",
+    title: "Youtube",
+    icon: faYoutube,
   },
   {
     id: "twitter",
