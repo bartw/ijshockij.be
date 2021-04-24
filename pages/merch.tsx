@@ -25,6 +25,7 @@ type State = {
   tees: Tee[];
   kidsCaps: number;
   caps: number;
+  name: string;
   email: string;
   newsletter: boolean;
 };
@@ -35,6 +36,7 @@ const INITIAL_STATE: State = {
   tees: [emptyTee()],
   kidsCaps: 0,
   caps: 0,
+  name: "",
   email: "",
   newsletter: false,
 };
@@ -49,6 +51,7 @@ type AddTee = { action: "ADD_TEE" };
 type RemoveTee = { action: "REMOVE_TEE"; id: string };
 type SetKidsCaps = { action: "SET_KIDS_CAPS"; kidsCaps: number };
 type SetCaps = { action: "SET_CAPS"; caps: number };
+type SetName = { action: "SET_NAME"; name: string };
 type SetEmail = { action: "SET_EMAIL"; email: string };
 type SetNewsletter = { action: "SET_NEWSLETTER"; newsletter: boolean };
 
@@ -59,6 +62,7 @@ type Action =
   | AddTee
   | SetKidsCaps
   | SetCaps
+  | SetName
   | SetEmail
   | SetNewsletter;
 
@@ -78,6 +82,8 @@ const setKidsCaps = (dispatch: Dispatch, kidsCaps: number) =>
   dispatch({ action: "SET_KIDS_CAPS", kidsCaps });
 const setCaps = (dispatch: Dispatch, caps: number) =>
   dispatch({ action: "SET_CAPS", caps });
+const setName = (dispatch: Dispatch, name: string) =>
+  dispatch({ action: "SET_NAME", name });
 const setEmail = (dispatch: Dispatch, email: string) =>
   dispatch({ action: "SET_EMAIL", email });
 const setNewsletter = (dispatch: Dispatch, newsletter: boolean) =>
@@ -132,6 +138,8 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, kidsCaps: action.kidsCaps };
     case "SET_CAPS":
       return { ...state, caps: action.caps };
+    case "SET_NAME":
+      return { ...state, name: action.name };
     case "SET_EMAIL":
       return { ...state, email: action.email };
     case "SET_NEWSLETTER":
@@ -310,6 +318,18 @@ const Home = () => {
                   />
                 </label>
               </div>
+            </div>
+            <div>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  placeholder="naam"
+                  required
+                  value={state.name}
+                  onChange={(e) => setName(dispatch, e.target.value)}
+                />
+              </label>
             </div>
             <div>
               <label>

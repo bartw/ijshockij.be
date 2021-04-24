@@ -7,7 +7,13 @@ const url = `${process.env.MERCH_BOT_WEBHOOK}`;
 
 const order = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { tees, kidsCaps, caps, email, newsletter } = JSON.parse(req.body);
+    const { tees, kidsCaps, caps, name, email, newsletter } = JSON.parse(
+      req.body
+    );
+
+    if (!name?.length) {
+      return res.status(400).json({ error: "Please enter a valid name" });
+    }
 
     if (!email?.length) {
       return res
@@ -17,7 +23,7 @@ const order = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const body = JSON.stringify({
       text: JSON.stringify(
-        { tees, kidsCaps, caps, email, newsletter },
+        { tees, kidsCaps, caps, name, email, newsletter },
         undefined,
         2
       ),
