@@ -1,8 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFileAlt,
+  faPlusCircle,
+  faTrashAlt,
+  faTshirt,
+} from "@fortawesome/free-solid-svg-icons";
 import { FormEvent, useReducer } from "react";
 import { v4 as uuid } from "uuid";
-import { Button, Container, Layout } from "../components";
+import { Button, Card, CardHeader, Container, Layout } from "../components";
 
 type TeeType = "KIDS" | "UNISEX";
 
@@ -162,58 +167,82 @@ const KIDS: KidsTeeSize[] = [
 const UNISEX: UnisexTeeSize[] = ["XS", "S", "M", "L", "XL", "XXL"];
 
 const TeeTypeSelect = ({
-  selectedType,
-  setSelectedType,
+  type,
+  onSetType,
 }: {
-  selectedType?: TeeType;
-  setSelectedType: (type?: TeeType) => void;
+  type?: TeeType;
+  onSetType: (type?: TeeType) => void;
 }) => (
   <select
-    value={selectedType}
+    value={type}
     onChange={(e) => {
-      const typeToSelect =
-        TYPES.find((type) => type === e.target.value) ?? undefined;
-      setSelectedType(typeToSelect);
+      const typeToSelect = TYPES.find((t) => t === e.target.value) ?? undefined;
+      onSetType(typeToSelect);
     }}
   >
     <option label="Selecteer" value={undefined} />
-    {TYPES.map((type) => (
-      <option key={type} label={type} value={type} />
+    {TYPES.map((t) => (
+      <option key={t} label={t} value={t} />
     ))}
   </select>
 );
 
 const TeeSizeSelect = ({
-  selectedType,
-  selectedSize,
-  setSelectedSize,
+  type,
+  size,
+  onSetSize,
 }: {
-  selectedType?: TeeType;
-  selectedSize?: KidsTeeSize | UnisexTeeSize;
-  setSelectedSize: (size?: KidsTeeSize | UnisexTeeSize) => void;
+  type?: TeeType;
+  size?: KidsTeeSize | UnisexTeeSize;
+  onSetSize: (size?: KidsTeeSize | UnisexTeeSize) => void;
 }) => (
   <select
-    disabled={!selectedType}
-    value={selectedSize}
+    disabled={!type}
+    value={size}
     onChange={(e) => {
       const sizeToSelect = (() => {
-        if (selectedType === "KIDS") {
-          return KIDS.find((type) => type === e.target.value) ?? undefined;
+        if (type === "KIDS") {
+          return KIDS.find((t) => t === e.target.value) ?? undefined;
         }
-        if (selectedType === "UNISEX") {
-          return UNISEX.find((type) => type === e.target.value) ?? undefined;
+        if (type === "UNISEX") {
+          return UNISEX.find((t) => t === e.target.value) ?? undefined;
         }
         return undefined;
       })();
-      setSelectedSize(sizeToSelect);
+      onSetSize(sizeToSelect);
     }}
   >
     <option label="Selecteer" value={undefined} />
-    {selectedType === "KIDS" &&
-      KIDS.map((size) => <option key={size} label={size} value={size} />)}
-    {selectedType === "UNISEX" &&
-      UNISEX.map((size) => <option key={size} label={size} value={size} />)}
+    {type === "KIDS" && KIDS.map((s) => <option key={s} label={s} value={s} />)}
+    {type === "UNISEX" &&
+      UNISEX.map((s) => <option key={s} label={s} value={s} />)}
   </select>
+);
+
+const TeeItem = ({
+  isFirst,
+  type,
+  size,
+  onSetType,
+  onSetSize,
+  onRemove,
+}: {
+  isFirst: boolean;
+  type?: TeeType;
+  size?: KidsTeeSize | UnisexTeeSize;
+  onSetType: (type?: TeeType) => void;
+  onSetSize: (size?: KidsTeeSize | UnisexTeeSize) => void;
+  onRemove: () => void;
+}) => (
+  <li>
+    <TeeTypeSelect type={type} onSetType={onSetType} />
+    <TeeSizeSelect type={type} size={size} onSetSize={onSetSize} />
+    {!isFirst && (
+      <button type="button" onClick={onRemove} title="t-shirt verwijderen">
+        <FontAwesomeIcon icon={faTrashAlt} />
+      </button>
+    )}
+  </li>
 );
 
 const Home = () => {
@@ -235,125 +264,131 @@ const Home = () => {
 
   return (
     <Layout>
-      <section className="bg-gray-50 py-8 px-4">
+      <section className="py-8 px-4">
         <Container>
           <form onSubmit={handleSubmit}>
-            <div>
-              tshirts:
-              <ul>
-                {state.tees.map((tee, index) => (
-                  <li key={tee.id}>
-                    <TeeTypeSelect
-                      selectedType={tee.type}
-                      setSelectedType={(type) =>
-                        setTeeType(dispatch, tee.id, type)
-                      }
-                    />
-                    <TeeSizeSelect
-                      selectedType={tee.type}
-                      selectedSize={tee.size}
-                      setSelectedSize={(size) =>
-                        setTeeSize(dispatch, tee.id, size)
-                      }
-                    />
-                    {index > 0 && (
-                      <button
-                        type="button"
-                        onClick={() => removeTee(dispatch, tee.id)}
-                        title="t-shirt toevoegen"
-                      >
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
-              <button
-                type="button"
-                onClick={() => addTee(dispatch)}
-                title="t-shirt verwijderen"
-              >
-                <FontAwesomeIcon icon={faPlusCircle} />
-              </button>
+            <div className="grid md:grid-cols-2 auto-rows-auto gap-8">
+              <Card>
+                <CardHeader icon={faTshirt}>t-shirt</CardHeader>
+                <div className="flex justify-center">
+                  <img src="/tshirt.png" alt="t-shirt" />
+                </div>
+                <div>
+                  <ul>
+                    {state.tees.map((tee, index) => (
+                      <TeeItem
+                        key={tee.id}
+                        isFirst={index === 0}
+                        type={tee.type}
+                        size={tee.size}
+                        onSetType={(type) => setTeeType(dispatch, tee.id, type)}
+                        onSetSize={(size) => setTeeSize(dispatch, tee.id, size)}
+                        onRemove={() => removeTee(dispatch, tee.id)}
+                      />
+                    ))}
+                  </ul>
+                  <button
+                    type="button"
+                    onClick={() => addTee(dispatch)}
+                    title="t-shirt toevoegen"
+                  >
+                    <FontAwesomeIcon icon={faPlusCircle} />
+                  </button>
+                </div>
+              </Card>
+              <Card>
+                <CardHeader icon={faTshirt}>trucker cap</CardHeader>
+                <div className="flex justify-center">
+                  <img src="/trucker-cap.png" alt="trucker cap" />
+                </div>
+                <div>
+                  <div>
+                    <label>
+                      Kinderen{" "}
+                      <input
+                        type="number"
+                        value={state.kidsCaps}
+                        min={0}
+                        onChange={(e) => {
+                          if (!e.target.value.length) {
+                            setKidsCaps(dispatch, 0);
+                          }
+                          const int = parseInt(e.target.value);
+                          if (isNaN(int)) {
+                            return;
+                          }
+                          setKidsCaps(dispatch, int);
+                        }}
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      Volwassenen{" "}
+                      <input
+                        type="number"
+                        value={state.caps}
+                        min={0}
+                        onChange={(e) => {
+                          if (!e.target.value.length) {
+                            setCaps(dispatch, 0);
+                          }
+                          const int = parseInt(e.target.value);
+                          if (isNaN(int)) {
+                            return;
+                          }
+                          setCaps(dispatch, int);
+                        }}
+                      />
+                    </label>
+                  </div>
+                </div>
+              </Card>
             </div>
-            <div>
-              trucker caps
-              <div>
-                <label>
-                  Kinderen{" "}
-                  <input
-                    type="number"
-                    value={state.kidsCaps}
-                    min={0}
-                    onChange={(e) => {
-                      if (!e.target.value.length) {
-                        setKidsCaps(dispatch, 0);
-                      }
-                      const int = parseInt(e.target.value);
-                      if (isNaN(int)) {
-                        return;
-                      }
-                      setKidsCaps(dispatch, int);
-                    }}
-                  />
-                </label>
-              </div>
-              <div>
-                <label>
-                  Volwassenen{" "}
-                  <input
-                    type="number"
-                    value={state.caps}
-                    min={0}
-                    onChange={(e) => {
-                      if (!e.target.value.length) {
-                        setCaps(dispatch, 0);
-                      }
-                      const int = parseInt(e.target.value);
-                      if (isNaN(int)) {
-                        return;
-                      }
-                      setCaps(dispatch, int);
-                    }}
-                  />
-                </label>
-              </div>
+            <div className="mt-8">
+              <Card>
+                <CardHeader icon={faFileAlt}>gegevens</CardHeader>
+                <div>
+                  <div>
+                    <label>
+                      Name:
+                      <input
+                        type="text"
+                        placeholder="naam"
+                        required
+                        value={state.name}
+                        onChange={(e) => setName(dispatch, e.target.value)}
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      Email:
+                      <input
+                        type="email"
+                        placeholder="player@hockey.ice"
+                        required
+                        value={state.email}
+                        onChange={(e) => setEmail(dispatch, e.target.value)}
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={state.newsletter}
+                        onChange={(e) =>
+                          setNewsletter(dispatch, e.target.checked)
+                        }
+                      />
+                      Inschrijven op onze nieuwsbrief?
+                    </label>
+                  </div>
+                </div>
+                <Button type="submit">Bestellen</Button>
+              </Card>
             </div>
-            <div>
-              <label>
-                Name:
-                <input
-                  type="text"
-                  placeholder="naam"
-                  required
-                  value={state.name}
-                  onChange={(e) => setName(dispatch, e.target.value)}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                Email:
-                <input
-                  type="email"
-                  placeholder="player@hockey.ice"
-                  required
-                  value={state.email}
-                  onChange={(e) => setEmail(dispatch, e.target.value)}
-                />
-              </label>
-            </div>
-            <div>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={state.newsletter}
-                  onChange={(e) => setNewsletter(dispatch, e.target.checked)}
-                />
-                Inschrijven op onze nieuwsbrief?
-              </label>
-            </div>
-            <Button type="submit">Bestellen</Button>
           </form>
         </Container>
       </section>

@@ -1,4 +1,5 @@
 export * from "./button";
+export * from "./card";
 export * from "./container";
 export * from "./events";
 export * from "./footer";
