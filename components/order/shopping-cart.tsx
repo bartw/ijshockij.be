@@ -45,7 +45,7 @@ export const ShoppingCart = ({ items, removeFromCart }: Props) => {
           </li>
         ))}
       </ul>
-      <div className="mt-4">
+      <div className="mt-8">
         <span>Totaal:</span>
         <span className="ml-2">€ {totalPrice}</span>
       </div>

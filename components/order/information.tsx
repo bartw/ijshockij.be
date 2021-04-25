@@ -5,6 +5,7 @@ import { FormElement } from "../form-element";
 import { Input } from "../input";
 
 type Props = {
+  isPending: boolean;
   name: string;
   email: string;
   newsletter: boolean;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const Information = ({
+  isPending,
   name,
   email,
   newsletter,
@@ -54,7 +56,9 @@ export const Information = ({
       </div>
     </div>
     <div className="text-right">
-      <Button type="submit">Bestellen</Button>
+      <Button type="submit" disabled={isPending}>
+        Bestellen
+      </Button>
     </div>
   </Card>
 );
