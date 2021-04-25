@@ -5,11 +5,11 @@ const headers = { "Content-Type": "application/json" };
 
 const url = `${process.env.MERCH_BOT_WEBHOOK}`;
 
-const order = async (req: NextApiRequest, res: NextApiResponse) => {
+const checkout = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { tees, kidsCaps, caps, name, email, newsletter } = JSON.parse(
-      req.body
-    );
+    const {
+      order: { cart, name, email, newsletter },
+    } = JSON.parse(req.body);
 
     if (!name?.length) {
       return res.status(400).json({ error: "Please enter a valid name" });
@@ -22,11 +22,7 @@ const order = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const body = JSON.stringify({
-      text: JSON.stringify(
-        { tees, kidsCaps, caps, name, email, newsletter },
-        undefined,
-        2
-      ),
+      text: JSON.stringify({ cart, name, email }, undefined, 2),
     });
 
     await fetch(url, { method: "POST", body, headers });
@@ -37,4 +33,4 @@ const order = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default order;
+export default checkout;

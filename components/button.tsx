@@ -4,12 +4,14 @@ import { MouseEventHandler, ReactNode } from "react";
 export const Button = ({
   disabled,
   type,
+  title,
   className,
   onClick,
   children,
 }: {
   disabled?: boolean;
   type?: "submit" | "reset" | "button";
+  title?: string;
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
@@ -22,6 +24,7 @@ export const Button = ({
     )}
     disabled={disabled}
     type={type}
+    title={title}
     onClick={onClick}
   >
     {children}

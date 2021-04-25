@@ -1,282 +1,118 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFileAlt,
-  faPlusCircle,
-  faTrashAlt,
-  faTshirt,
-} from "@fortawesome/free-solid-svg-icons";
-import { FormEvent } from "react";
+import { faTshirt } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { v4 as uuid } from "uuid";
 import {
   Button,
   Card,
   CardHeader,
   Container,
   FormElement,
-  Input,
   Layout,
+  Order,
   Select,
+  useShoppingCart,
 } from "../components";
-import {
-  addTee,
-  KidsTeeSize,
-  removeTee,
-  setCaps,
-  setEmail,
-  setKidsCaps,
-  setName,
-  setNewsletter,
-  setTeeSize,
-  setTeeType,
-  TeeType,
-  UnisexTeeSize,
-  useMerch,
-} from "../hooks";
 
-const TYPES: TeeType[] = ["KIDS", "UNISEX"];
+type MerchItem = {
+  label: string;
+  size: string;
+  unitPrice: number;
+};
 
-const KIDS: KidsTeeSize[] = [
-  "98 - 104",
-  "110 - 116",
-  "122 - 128",
-  "134 - 148",
-  "152 - 164",
+const TEES: MerchItem[] = [
+  { label: "98 - 104 €15", size: "98 - 104", unitPrice: 15 },
+  { label: "110 - 116 €15", size: "110 - 116", unitPrice: 15 },
+  { label: "122 - 128 €15", size: "122 - 128", unitPrice: 15 },
+  { label: "134 - 148 €15", size: "134 - 148", unitPrice: 15 },
+  { label: "152 - 164 €15", size: "152 - 164", unitPrice: 15 },
+  { label: "XS €20", size: "XS", unitPrice: 20 },
+  { label: "S €20", size: "S", unitPrice: 20 },
+  { label: "M €20", size: "M", unitPrice: 20 },
+  { label: "L €20", size: "L", unitPrice: 20 },
+  { label: "XL €20", size: "XL", unitPrice: 20 },
+  { label: "XXL €20", size: "XXL", unitPrice: 20 },
 ];
 
-const UNISEX: UnisexTeeSize[] = ["XS", "S", "M", "L", "XL", "XXL"];
+const CAPS: MerchItem[] = [
+  { label: "Kinderen €20", size: "Kinderen", unitPrice: 20 },
+  { label: "Volwassenen €20", size: "Volwassenen", unitPrice: 20 },
+];
 
-const TeeTypeSelect = ({
-  type,
-  onSetType,
-}: {
-  type?: TeeType;
-  onSetType: (type?: TeeType) => void;
-}) => (
-  <FormElement label="Type">
-    <Select
-      value={type}
-      onChange={(e) => {
-        const typeToSelect =
-          TYPES.find((t) => t === e.target.value) ?? undefined;
-        onSetType(typeToSelect);
-      }}
-    >
-      <option label="Selecteer" value={undefined} />
-      {TYPES.map((t) => (
-        <option key={t} label={t} value={t} />
-      ))}
-    </Select>
-  </FormElement>
-);
+const NO_VALUE = "NO_VALUE";
 
-const TeeSizeSelect = ({
-  type,
-  size,
-  onSetSize,
+const MerchItems = ({
+  name,
+  merchItems,
 }: {
-  type?: TeeType;
-  size?: KidsTeeSize | UnisexTeeSize;
-  onSetSize: (size?: KidsTeeSize | UnisexTeeSize) => void;
-}) => (
-  <FormElement label="Maat">
-    <Select
-      disabled={!type}
-      value={size}
-      onChange={(e) => {
-        const sizeToSelect = (() => {
-          if (type === "KIDS") {
-            return KIDS.find((t) => t === e.target.value) ?? undefined;
+  name: string;
+  merchItems: MerchItem[];
+}) => {
+  const { addToCart } = useShoppingCart();
+  const [merchItem, setMerchItem] = useState<MerchItem | undefined>(undefined);
+
+  return (
+    <div>
+      <FormElement label="Maat">
+        <Select
+          value={merchItem?.size ?? NO_VALUE}
+          onChange={(e) =>
+            setMerchItem(merchItems.find((t) => t.size === e.target.value))
           }
-          if (type === "UNISEX") {
-            return UNISEX.find((t) => t === e.target.value) ?? undefined;
-          }
-          return undefined;
-        })();
-        onSetSize(sizeToSelect);
-      }}
-    >
-      <option label="Selecteer" value={undefined} />
-      {type === "KIDS" &&
-        KIDS.map((s) => <option key={s} label={s} value={s} />)}
-      {type === "UNISEX" &&
-        UNISEX.map((s) => <option key={s} label={s} value={s} />)}
-    </Select>
-  </FormElement>
-);
-
-const TeeItem = ({
-  isFirst,
-  type,
-  size,
-  onSetType,
-  onSetSize,
-  onRemove,
-}: {
-  isFirst: boolean;
-  type?: TeeType;
-  size?: KidsTeeSize | UnisexTeeSize;
-  onSetType: (type?: TeeType) => void;
-  onSetSize: (size?: KidsTeeSize | UnisexTeeSize) => void;
-  onRemove: () => void;
-}) => (
-  <li className="flex justify-between items-end">
-    <TeeTypeSelect type={type} onSetType={onSetType} />
-    <div className="ml-2">
-      <TeeSizeSelect type={type} size={size} onSetSize={onSetSize} />
-    </div>
-    <div className="ml-2">
-      <button
+        >
+          <option label="Selecteer" value={NO_VALUE} />
+          {merchItems.map((m) => (
+            <option key={m.size} label={m.label} value={m.size} />
+          ))}
+        </Select>
+      </FormElement>
+      <Button
         type="button"
-        onClick={onRemove}
-        title="t-shirt verwijderen"
-        className="text-2xl"
-        disabled={isFirst}
+        disabled={!merchItem}
+        onClick={() => {
+          if (!merchItem) {
+            return;
+          }
+
+          addToCart({
+            id: uuid(),
+            name,
+            description: merchItem.size,
+            amount: 1,
+            unitPrice: merchItem.unitPrice,
+          });
+
+          setMerchItem(undefined);
+        }}
       >
-        <FontAwesomeIcon icon={faTrashAlt} />
-      </button>
+        In winkelwagen
+      </Button>
     </div>
-  </li>
-);
+  );
+};
 
 const Home = () => {
-  const [state, dispatch] = useMerch();
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    fetch("api/order", {
-      method: "POST",
-      body: JSON.stringify({
-        ...state,
-        tees: state.tees
-          .filter((tee) => tee.type && tee.size)
-          .map(({ type, size }) => ({ type, size })),
-      }),
-    });
-  };
-
   return (
     <Layout>
       <section className="mt-4 py-8 px-4">
         <Container>
-          <form onSubmit={handleSubmit}>
+          <Order>
             <div className="grid md:grid-cols-2 auto-rows-auto gap-8">
               <Card>
                 <CardHeader icon={faTshirt}>t-shirt</CardHeader>
                 <div className="flex justify-center">
                   <img src="/tshirt.png" alt="t-shirt" />
                 </div>
-                <div className="inline-block">
-                  <ul>
-                    {state.tees.map((tee, index) => (
-                      <TeeItem
-                        key={tee.id}
-                        isFirst={index === 0}
-                        type={tee.type}
-                        size={tee.size}
-                        onSetType={(type) => setTeeType(dispatch, tee.id, type)}
-                        onSetSize={(size) => setTeeSize(dispatch, tee.id, size)}
-                        onRemove={() => removeTee(dispatch, tee.id)}
-                      />
-                    ))}
-                  </ul>
-                  <div className="mt-4 flex justify-end">
-                    <button
-                      type="button"
-                      onClick={() => addTee(dispatch)}
-                      title="t-shirt toevoegen"
-                      className="text-2xl"
-                    >
-                      <FontAwesomeIcon icon={faPlusCircle} />
-                    </button>
-                  </div>
-                </div>
+                <MerchItems name="t-shirt" merchItems={TEES} />
               </Card>
               <Card>
                 <CardHeader icon={faTshirt}>trucker cap</CardHeader>
                 <div className="flex justify-center">
                   <img src="/trucker-cap.png" alt="trucker cap" />
                 </div>
-                <div>
-                  <FormElement label="Kinderen:">
-                    <Input
-                      type="number"
-                      value={state.kidsCaps}
-                      min={0}
-                      onChange={(e) => {
-                        if (!e.target.value.length) {
-                          setKidsCaps(dispatch, 0);
-                        }
-                        const int = parseInt(e.target.value);
-                        if (isNaN(int)) {
-                          return;
-                        }
-                        setKidsCaps(dispatch, int);
-                      }}
-                    />
-                  </FormElement>
-                  <FormElement label="Volwassenen:">
-                    <Input
-                      type="number"
-                      value={state.caps}
-                      min={0}
-                      onChange={(e) => {
-                        if (!e.target.value.length) {
-                          setCaps(dispatch, 0);
-                        }
-                        const int = parseInt(e.target.value);
-                        if (isNaN(int)) {
-                          return;
-                        }
-                        setCaps(dispatch, int);
-                      }}
-                    />
-                  </FormElement>
-                </div>
+                <MerchItems name="trucker cap" merchItems={CAPS} />
               </Card>
             </div>
-            <div className="mt-8">
-              <Card>
-                <CardHeader icon={faFileAlt}>gegevens</CardHeader>
-                <div>
-                  <FormElement label="Naam:">
-                    <Input
-                      type="text"
-                      placeholder="hockey player"
-                      required
-                      value={state.name}
-                      onChange={(e) => setName(dispatch, e.target.value)}
-                    />
-                  </FormElement>
-                  <FormElement label="Email:">
-                    <Input
-                      type="email"
-                      placeholder="player@hockey.ice"
-                      required
-                      value={state.email}
-                      onChange={(e) => setEmail(dispatch, e.target.value)}
-                    />
-                  </FormElement>
-                  <div className="mt-4">
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={state.newsletter}
-                        onChange={(e) =>
-                          setNewsletter(dispatch, e.target.checked)
-                        }
-                      />
-                      <span className="ml-2">
-                        Inschrijven op onze nieuwsbrief?
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <Button type="submit">Bestellen</Button>
-                </div>
-              </Card>
-            </div>
-          </form>
+          </Order>
         </Container>
       </section>
     </Layout>
