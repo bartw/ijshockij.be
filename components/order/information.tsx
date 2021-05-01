@@ -26,6 +26,13 @@ export const Information = ({
   <Card>
     <CardHeader icon={faFileAlt}>gegevens</CardHeader>
     <div>
+      <p>
+        Wij contacteren jou via email als je de bestelling geplaatst hebt om de
+        betaling en afhaling te regelen.
+      </p>
+      <p className="mt-2">
+        Een bestelling is pas definitief nadat wij de betaling hebben ontvangen.
+      </p>
       <FormElement label="Naam:">
         <Input
           type="text"
