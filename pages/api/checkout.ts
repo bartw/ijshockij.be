@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
+import { subscribeToNewsletter } from "./subscribe";
 
 const headers = { "Content-Type": "application/json" };
 
@@ -75,6 +76,10 @@ const checkout = async (req: NextApiRequest, res: NextApiResponse) => {
       return res
         .status(400)
         .json({ error: "Please enter a valid email address" });
+    }
+
+    if (newsletter) {
+      subscribeToNewsletter(email).catch(() => {});
     }
 
     const body = JSON.stringify(createBlocks(cart, name, email), undefined, 2);

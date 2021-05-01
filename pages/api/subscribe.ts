@@ -12,6 +12,11 @@ const headers = {
 
 const url = `https://${process.env.MAILCHIMP_API_SERVER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_AUDIENCE_ID}/members`;
 
+export const subscribeToNewsletter = (email: string) => {
+  const body = JSON.stringify({ email_address: email, status: "subscribed" });
+  return fetch(url, { method: "POST", body, headers });
+};
+
 const subscribe = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { email } = JSON.parse(req.body);
@@ -21,10 +26,8 @@ const subscribe = async (req: NextApiRequest, res: NextApiResponse) => {
         .status(400)
         .json({ error: "Please enter a valid email address" });
     }
-    
-    const body = JSON.stringify({ email_address: email, status: "subscribed" });
 
-    await fetch(url, { method: "POST", body, headers });
+    await subscribeToNewsletter(email);
 
     return res.status(201).json({ error: null });
   } catch (error) {
