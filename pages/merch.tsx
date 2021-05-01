@@ -7,6 +7,7 @@ import {
   CardHeader,
   Container,
   FormElement,
+  Hero,
   Layout,
   Order,
   Select,
@@ -93,24 +94,14 @@ const MerchItems = ({
 const Home = () => {
   return (
     <Layout>
-      <section className="bg-gray-50 pt-8 pb-8 md:pb-0">
-        <Container>
-          <div className="md:flex md:flex-row-reverse md:items-center">
-            <div>
-              <img src="/ijshockij.png" alt="ijshockij logo" />
-            </div>
-            <div className="mx-4 mt-4 md:mt-0">
-              <h2 className="text-xl">
-                Bestel jouw exclusieve ijshockij merchandise!
-              </h2>
-              <p>
-                De opbrengst wordt integraal gebruikt voor de aankoop van
-                materiaal om onze kampen nog beter te maken.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <Hero>
+        <img src="/ijshockij.png" alt="ijshockij logo" />
+        <>Bestel jouw exclusieve ijshockij merchandise!</>
+        <p>
+          De opbrengst wordt integraal gebruikt voor de aankoop van materiaal om
+          onze kampen nog beter te maken.
+        </p>
+      </Hero>
       <section className="py-8 px-4">
         <Container>
           <Order>
