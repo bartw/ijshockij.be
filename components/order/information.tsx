@@ -73,7 +73,7 @@ export const Information = ({
       )}
       {state === "ERROR" && (
         <div role="alert" className="mt-2 text-sm text-red-700">
-          <p>Oei, er is iets mis gegaan.</p>
+          <p>Oei, er is iets misgegaan.</p>
           <p>Probeer je het nog een keer?</p>
         </div>
       )}
