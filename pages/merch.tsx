@@ -61,9 +61,11 @@ const MerchItems = ({
             setMerchItem(merchItems.find((t) => t.size === e.target.value))
           }
         >
-          <option label="Selecteer" value={NO_VALUE} />
+          <option value={NO_VALUE}>Selecteer</option>
           {merchItems.map((m) => (
-            <option key={m.size} label={m.label} value={m.size} />
+            <option key={m.size} value={m.size}>
+              {m.label}
+            </option>
           ))}
         </Select>
       </FormElement>
