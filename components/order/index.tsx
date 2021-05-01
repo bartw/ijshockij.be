@@ -1,12 +1,14 @@
 import { FormEvent, ReactNode, useState } from "react";
 import {
   addToCart,
+  completeOrder,
+  failOrder,
   Item,
   removeFromCart,
-  resetOrder,
   setEmail,
   setName,
   setNewsletter,
+  submitOrder,
   useOrder,
 } from "./use-order";
 import { Information } from "./information";
@@ -21,20 +23,18 @@ type Props = {
 
 export const Order = ({ children }: Props) => {
   const [order, dispatch] = useOrder();
-  const [isPending, setIsPending] = useState<boolean>(false);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    setIsPending(true);
+    submitOrder(dispatch);
 
     fetch("api/checkout", {
       method: "POST",
       body: JSON.stringify({ order }),
-    }).finally(() => {
-      resetOrder(dispatch);
-      setIsPending(false);
-    });
+    })
+      .then(() => completeOrder(dispatch))
+      .catch(() => failOrder(dispatch));
   };
 
   return (
@@ -51,7 +51,7 @@ export const Order = ({ children }: Props) => {
         </div>
         <div className="mt-8">
           <Information
-            isPending={isPending}
+            state={order.state}
             name={order.name}
             email={order.email}
             newsletter={order.newsletter}
