@@ -23,14 +23,14 @@ export const ShoppingCart = ({ items, removeFromCart }: Props) => {
           <li key={item.id} className="mt-4 flex justify-between items-end">
             <div>
               <div>
-                <span className="uppercase">{item.name}</span>
-                <span className="ml-2">{item.description}</span>
+                <span className="uppercase font-semibold">{item.name}</span>
+                <span className="ml-2 text-sm">{item.description}</span>
               </div>
-              <div>
+              <div className="text-sm">
                 <span>Aantal:</span>
                 <span className="ml-2">{item.amount}</span>
               </div>
-              <div>
+              <div className="text-sm">
                 <span>Prijs:</span>
                 <span className="ml-2">€ {item.unitPrice}</span>
               </div>

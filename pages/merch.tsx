@@ -1,4 +1,5 @@
 import { faTshirt } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import {
@@ -95,7 +96,12 @@ const Home = () => {
   return (
     <Layout>
       <Hero>
-        <img src="/ijshockij.png" alt="ijshockij logo" />
+        <Image
+          src="/ijshockij.png"
+          alt="ijshockij logo"
+          width={500}
+          height={500}
+        />
         <>Bestel jouw exclusieve ijshockij merchandise!</>
         <p>
           De opbrengst wordt integraal gebruikt voor de aankoop van materiaal om
@@ -109,14 +115,24 @@ const Home = () => {
               <Card>
                 <CardHeader icon={faTshirt}>t-shirt</CardHeader>
                 <div className="flex justify-center">
-                  <img src="/tshirt.png" alt="t-shirt" />
+                  <Image
+                    src="/tshirt.png"
+                    alt="t-shirt"
+                    width={400}
+                    height={500}
+                  />
                 </div>
                 <MerchItems name="t-shirt" merchItems={TEES} />
               </Card>
               <Card>
                 <CardHeader icon={faTshirt}>trucker cap</CardHeader>
                 <div className="flex justify-center">
-                  <img src="/trucker-cap.png" alt="trucker cap" />
+                  <Image
+                    src="/trucker-cap.png"
+                    alt="trucker cap"
+                    width={320}
+                    height={320}
+                  />
                 </div>
                 <MerchItems name="trucker cap" merchItems={CAPS} />
               </Card>

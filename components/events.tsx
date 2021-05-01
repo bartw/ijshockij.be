@@ -1,5 +1,6 @@
 import { faCalendarCheck } from "@fortawesome/free-regular-svg-icons";
 import { faTshirt } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 import { Card, CardHeader } from "./card";
 import { Container } from "./container";
 import { ExternalLinkButton, LinkButton } from "./link-button";
@@ -11,14 +12,19 @@ export const Events = () => (
         <Card>
           <CardHeader icon={faTshirt}>t-shirt</CardHeader>
           <div className="flex justify-center">
-            <img src="/tshirt.png" alt="t-shirt" />
+            <Image src="/tshirt.png" alt="t-shirt" width={400} height={500} />
           </div>
           <LinkButton href="/merch">Bestellen</LinkButton>
         </Card>
         <Card>
           <CardHeader icon={faTshirt}>trucker cap</CardHeader>
           <div className="flex justify-center">
-            <img src="/trucker-cap.png" alt="trucker cap" />
+            <Image
+              src="/trucker-cap.png"
+              alt="trucker cap"
+              width={320}
+              height={320}
+            />
           </div>
           <LinkButton href="/merch">Bestellen</LinkButton>
         </Card>
