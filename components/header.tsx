@@ -1,5 +1,6 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { SOCIAL_NETWORKS } from "../data";
 
 const SocialCircleLink = ({
@@ -24,7 +25,11 @@ const SocialCircleLink = ({
 
 export const Header = () => (
   <header className="text-center py-8">
-    <h1 className="text-3xl">ijshockij</h1>
+    <Link href="/">
+      <a>
+        <h1 className="text-3xl">ijshockij</h1>
+      </a>
+    </Link>
     <div className="mt-4 -mb-12">
       {SOCIAL_NETWORKS.map(({ id, href, title, icon }) => (
         <SocialCircleLink key={id} href={href} title={title} icon={icon} />

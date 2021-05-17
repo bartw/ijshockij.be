@@ -1,34 +1,19 @@
-import Head from "next/head";
-import { config, dom } from "@fortawesome/fontawesome-svg-core";
-import {
-  Events,
-  Footer,
-  Header,
-  Hero,
-  Newsletter,
-  Sponsors,
-} from "../components";
-
-config.autoAddCss = false;
+import Image from "next/image";
+import { Events, Hero, Layout, Newsletter } from "../components";
 
 const Home = () => (
-  <div>
-    <Head>
-      <title>ijshockij</title>
-      <meta name="description" content="Wij leren jou ijshockey spelen!" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <style>{dom.css()}</style>
-    </Head>
-
-    <main className="bg-gray-200 text-gray-900">
-      <Header />
-      <Hero />
-      <Events />
-      <Newsletter />
-      <Sponsors />
-      <Footer />
-    </main>
-  </div>
+  <Layout>
+    <Hero>
+      <Image src="/bas.png" alt="Coach Bas" width={500} height={500} priority />
+      <>Wij leren jou ijshockey spelen!</>
+      <p>
+        Iedereen kan ijshockey spelen en wij staan klaar om jou hiermee te
+        helpen.
+      </p>
+    </Hero>
+    <Events />
+    <Newsletter />
+  </Layout>
 );
 
 export default Home;
