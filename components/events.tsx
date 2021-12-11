@@ -21,8 +21,8 @@ export const Events = () => (
             <Image
               src="/xmas.png"
               alt="xmas off ice skill camp"
-              width={640}
-              height={777}
+              width={600}
+              height={800}
             />
           </div>
           <LinkButton href="/inschrijven">Inschrijven</LinkButton>

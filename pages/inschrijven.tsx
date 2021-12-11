@@ -25,14 +25,14 @@ const Inschrijven = () => {
               <Image
                 src="/xmas.png"
                 alt="xmas off ice skill camp"
-                width={640}
-                height={777}
+                width={600}
+                height={800}
               />
             </div>
             <div>
               <p>
-                Schrijf je kind in door €60 over te schrijven naar BE23 3350
-                3231 0443.
+                Schrijf je kind in door €60 over te schrijven naar BE23 3632
+                1003 9291.
               </p>
               <p>Vergeet niet de naam van je kind te vermelden.</p>
             </div>
