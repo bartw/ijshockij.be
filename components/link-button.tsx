@@ -27,3 +27,9 @@ export const ExternalLinkButton = ({
     {children}
   </a>
 );
+
+export const DisabledLinkButton = ({ children }: { children: ReactNode }) => (
+  <a className="mt-4 rounded bg-gray-700 text-gray-50 px-4 py-2 w-full block text-center">
+    {children}
+  </a>
+);
