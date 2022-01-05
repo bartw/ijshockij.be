@@ -3,11 +3,7 @@ import { faTshirt } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { Card, CardHeader } from "./card";
 import { Container } from "./container";
-import {
-  DisabledLinkButton,
-  ExternalLinkButton,
-  LinkButton,
-} from "./link-button";
+import { DisabledLinkButton, ExternalLinkButton } from "./link-button";
 
 export const Events = () => (
   <section className="py-8 px-4">
@@ -25,7 +21,9 @@ export const Events = () => (
               height={800}
             />
           </div>
-          <LinkButton href="/inschrijven">Inschrijven</LinkButton>
+          <ExternalLinkButton href="https://youtu.be/1I-jI6C9DOU">
+            Video
+          </ExternalLinkButton>
         </Card>
         <Card>
           <CardHeader icon={faTshirt}>t-shirt</CardHeader>
